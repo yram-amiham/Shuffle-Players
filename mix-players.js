@@ -21,9 +21,9 @@ function showPlayerList() {
     
         let removeBtn = document.createElement("button")
         addedTableDataRemoveBtn.appendChild(removeBtn)
-        removeBtn.classList.add("btn-close")
+        removeBtn.textContent = "×";
         removeBtn.type = "button"
-        removeBtn.ariaLabel = "Close"
+        removeBtn.classList.add( "btn", "btn-outline-danger","btn-sm")
         removeBtn.addEventListener("click", function () {
             players.splice(i, 1);
             showPlayerList();
@@ -32,6 +32,7 @@ function showPlayerList() {
 }
 
 let players = [];
+// let matchesPlayed = [];
 
 function addPlayer (){
     let playerName = document.getElementById("player-name").value;
@@ -40,7 +41,10 @@ function addPlayer (){
         return;
     }
     let player = {
-    name: playerName 
+    name: playerName,
+    matchesPlayed : 0,
+    teammates: [],
+    opponents: []
 }
     players.push(player)
     document.getElementById("player-name").value = "";
