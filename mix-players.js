@@ -66,34 +66,30 @@ function generateMatches() {
         let teamRestingData = document.createElement("td")
         teamRestingData.textContent = "-";
         roundBodyRow.appendChild(teamRestingData)
-        
     }
-    
 }
 
 function generateMatchesBTN (){
     let numberOfMatches = Number(document.getElementById("match-count").value);
-    if (players.length < 4){
-        showModal("Coach's Advice",
-            "You can't play 2v2 with imaginary friends. Add at least 4 players.",
-            "Got it")
-            
-            return;
-    }
+        if (players.length < 4){
+            showModal("Coach's Advice",
+                "You can't play 2v2 with imaginary friends. Add at least 4 players.",
+                "Got it")
+                return;
+        }
 
-    if (numberOfMatches <= 0) {
-        showModal("Coach's Advice",
-            "Generating... absolutely nothing. Enter the number of rounds.",
-        "Got it");;
-        return;
-    }
+        if (numberOfMatches <= 0) {
+            showModal("Coach's Advice",
+                "Generating... absolutely nothing. Enter the number of rounds.",
+            "Got it");;
+            return;
+        }
     generateMatches();
-    document.getElementById("match-count").value = "";
-    document.getElementById("generated-matches").scrollIntoView({
-        behavior: "smooth"
+        document.getElementById("match-count").value = "";
+        document.getElementById("generated-matches").scrollIntoView({
+            behavior: "smooth"
     });
 }
-
 
 document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
 document.getElementById("match-count").addEventListener("keydown", function (event) {
@@ -137,4 +133,6 @@ document.getElementById("clear-all-players").addEventListener("click", function 
         players = [];
         localStorage.setItem("storingPlayers", JSON.stringify(players))
         showPlayerList();
+        let generatedRounds = document.getElementById("matches-table-body")
+        generatedRounds.textContent = "";
     });
