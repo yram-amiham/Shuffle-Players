@@ -66,7 +66,9 @@ function generateMatches() {
         let teamRestingData = document.createElement("td")
         teamRestingData.textContent = "";
         roundBodyRow.appendChild(teamRestingData)
+        
     }
+    
 }
 
 function generateMatchesBTN (){
@@ -75,7 +77,8 @@ function generateMatchesBTN (){
         showModal("Coach's Advice",
             "You can't play 2v2 with imaginary friends. Add at least 4 players.",
             "Got it")
-        return;
+            
+            return;
     }
 
     if (numberOfMatches <= 0) {
@@ -85,6 +88,7 @@ function generateMatchesBTN (){
         return;
     }
     generateMatches();
+    document.getElementById("match-count").value = "";
 }
 document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
 document.getElementById("match-count").addEventListener("keydown", function (event) {
