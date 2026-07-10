@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
 </head>
-
 <body class="p-3 mb-2 bg-dark text-white">
-
   <div id="mainContainer" class="container">
     <p class="fs-1 text-center fw-bolder mb-5">Game Planner</p>
     <div class="row">
@@ -35,42 +32,39 @@
       </div>
     </div>
     <div class="row mt-5">
-      <div class="col-12">
-        <p class="fs-2 fw-medium text-center">Player List</p>
-        <table id="list-of-players" class="table table-bordered table-striped text-center">
-          <thead>
-            <tr class="table-dark">
-              <th scope="col">No.</th>
-              <th scope="col">Names</th>
-              <th scope="col">Remove Player</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
-            <!-- JavaScript -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-12">
-        <p class="fs-2 fw-medium text-center">Generated Rounds</p>
-        <div id="generated-matches">
-          <table id="matches-table" class="table table-bordered table-striped text-center">
-            <thead>
-              <tr class="table-dark ">
-                <th>Round</th>
-                <th>Team A</th>
-                <th>Team B</th>
-                <th>Resting</th>
-              </tr>
-            </thead>
-            <tbody id="matches-table-body">
-              <!-- JavaScript -->
-            </tbody>
+      <div class="col-lg-4">
+          <p class="fs-2 fw-medium text-center">Player List</p>
+          <table id="list-of-players" class="table table-bordered table-striped text-center">
+              <thead>
+                  <tr class="table-dark">
+                      <th>No.</th>
+                      <th>Names</th>
+                      <th>Remove Player</th>
+                  </tr>
+              </thead>
+              <tbody id="table-body">
+                  <!-- JavaScript -->
+              </tbody>
           </table>
-        </div>
       </div>
-    </div>
+      <div class="col-lg-8">
+          <p class="fs-2 fw-medium text-center">Generated Rounds</p>
+          <div id="generated-matches">
+              <table id="matches-table" class="table table-bordered table-striped text-center">
+                  <thead>
+                      <tr class="table-dark">
+                          <th>Round</th>
+                          <th>Team A</th>
+                          <th>Team B</th>
+                          <th>Resting</th>
+                      </tr>
+                  </thead>
+                  <tbody id="matches-table-body">
+                      <!-- JavaScript -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
   </div>
   </div>
   <div class="modal" id="appModal" tabindex="-1">

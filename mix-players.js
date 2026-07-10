@@ -56,15 +56,15 @@ function generateMatches() {
         roundBodyRow.appendChild(roundData)
 
         let teamAData = document.createElement("td")
-        teamAData.textContent = "";
+        teamAData.textContent = "-";
         roundBodyRow.appendChild(teamAData)
     
         let teamBData = document.createElement("td")
-        teamBData.textContent = "";
+        teamBData.textContent = "-";
         roundBodyRow.appendChild(teamBData)
 
         let teamRestingData = document.createElement("td")
-        teamRestingData.textContent = "";
+        teamRestingData.textContent = "-";
         roundBodyRow.appendChild(teamRestingData)
         
     }
@@ -89,7 +89,12 @@ function generateMatchesBTN (){
     }
     generateMatches();
     document.getElementById("match-count").value = "";
+    document.getElementById("generated-matches").scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
+
 document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
 document.getElementById("match-count").addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
