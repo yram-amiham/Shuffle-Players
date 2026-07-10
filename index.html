@@ -1,92 +1,101 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
-    />
-  </head>
 
-  <body class="p-3 mb-2 bg-dark text-white">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+</head>
 
-    <div id="mainContainer" class="container">
-      <p class="fs-1 text-center fw-bolder mb-5">Game Planner</p>
-      <div class="row">
-        <div class="col-md-6">
-          <p class="fs-2 fw-medium">Add Players</p>
-          <p>Player Name</p>
-          <input
-            id="player-name"
-            type="text"
-            class="form-control border border-3"/>
-          <button id="add-player-btn" class="btn btn-primary mt-3">
-            Add Player
-          </button>
-          <button id="clear-all-players" class="btn btn-secondary mt-3">
-            Clear All
-          </button>
-        </div>
-        <div class="col-md-6">
-          <p class="fs-2 fw-medium">Generate Rounds</p>
-          <p>Number of Rounds</p>
-          <input
-            id="match-count"
-            type="number"
-            class="form-control border border-3"/>
-          <button id="generate-matches-btn" class="btn btn-success mt-3">
-            Generate Now
-          </button>
-        </div>
+<body class="p-3 mb-2 bg-dark text-white">
+
+  <div id="mainContainer" class="container">
+    <p class="fs-1 text-center fw-bolder mb-5">Game Planner</p>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="fs-2 fw-medium">Add Players</p>
+        <p>Player Name</p>
+        <input id="player-name" type="text" class="form-control border border-3" />
+        <button id="add-player-btn" class="btn btn-primary mt-3">
+          Add Player
+        </button>
+        <button id="clear-all-players" class="btn btn-secondary mt-3">
+          Clear All
+        </button>
       </div>
-      <div class="row mt-5">
-        <div class="col-12">
-          <p class="fs-2 fw-medium text-center">Player List</p>
-          <table id="list-of-players" class="table table-bordered table-striped text-center">
+      <div class="col-md-6">
+        <p class="fs-2 fw-medium">Generate Rounds</p>
+        <p>Number of Rounds</p>
+        <input id="match-count" type="number" class="form-control border border-3" />
+        <button id="generate-matches-btn" class="btn btn-success mt-3">
+          Generate Rounds
+        </button>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12">
+        <p class="fs-2 fw-medium text-center">Player List</p>
+        <table id="list-of-players" class="table table-bordered table-striped text-center">
+          <thead>
+            <tr class="table-dark">
+              <th scope="col">No.</th>
+              <th scope="col">Names</th>
+              <th scope="col">Remove Player</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12">
+        <p class="fs-2 fw-medium text-center">Generated Rounds</p>
+        <div id="generated-matches">
+          <table id="matches-table" class="table table-bordered table-striped text-center">
             <thead>
-              <tr class="table-dark">
-                <th scope="col">No.</th>
-                <th scope="col">Names</th>
-                <th scope="col">Remove Player</th>
+              <tr class="table-dark ">
+                <th>Round</th>
+                <th>Team A</th>
+                <th>Team B</th>
+                <th>Resting</th>
               </tr>
             </thead>
-            <tbody id="table-body">
+            <tbody id="matches-table-body">
               <!-- JavaScript -->
             </tbody>
           </table>
         </div>
       </div>
-      <div class="row mt-5">
-        <div class="col-12">
-          <p class="fs-2 fw-medium text-center">Generated Rounds</p>
-          <div id="generated-matches">
-              <table
-                id="matches-table"
-                class="table table-bordered table-striped text-center">
-                <thead>
-                  <tr class="table-dark ">
-                    <th>Round</th>
-                    <th>Team A</th>
-                    <th>Team B</th>
-                    <th>Resting</th>
-                  </tr>
-                </thead>
-                <tbody id="matches-table-body">
-            
-                  <!-- JavaScript -->
-            
-                </tbody>
-              </table>
-            </div>
-          </div>
+    </div>
+  </div>
+  </div>
+  <div class="modal" id="appModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark text-white border-light">
+        <div class="modal-header position-relative justify-content-center">
+          <h5 class="modal-title w-100 text-center" id="modal-title">
+            <!-- msg in js -->
+          </h5>
+          <button type="button" class="btn-close position-absolute end-0 me-3" data-bs-dismiss="modal"
+            aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body text-center" id="modal-message">
+          <!-- msg in js -->
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button id="modal-button" type="button" class="btn btn-primary" data-bs-dismiss="modal">
+            <!-- msg in js -->
+          </button>
         </div>
       </div>
     </div>
-
-    <script src="mix-players.js"></script>
-  </body>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="mix-players.js"></script>
+</body>
 </html>

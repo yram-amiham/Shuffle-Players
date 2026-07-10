@@ -31,6 +31,16 @@ function showPlayerList() {
     }
 }
 
+function showModal(title, message, buttonText) {
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-message").textContent = message;
+    document.getElementById("modal-button").textContent = buttonText;
+    let modalElement = document.getElementById("appModal");
+    let modal = new bootstrap.Modal(modalElement);
+    modal.show();
+    document.getElementById("modal-button").focus();
+}
+
 function generateMatches() {
     let totalRounds = Number(document.getElementById("match-count").value);
     let matchesTableBody = document.getElementById("matches-table-body")
@@ -62,17 +72,26 @@ function generateMatches() {
 function generateMatchesBTN (){
     let numberOfMatches = Number(document.getElementById("match-count").value);
     if (players.length < 4){
-        alert("You can't play 2v2 with imaginary friends. Add at least 4 players.")
+        showModal("Coach's Advice",
+            "You can't play 2v2 with imaginary friends. Add at least 4 players.",
+            "Got it")
         return;
     }
 
     if (numberOfMatches <= 0) {
-        alert("Generating... absolutely nothing. Enter the number of rounds.");
+        showModal("Coach's Advice",
+            "Generating... absolutely nothing. Enter the number of rounds.",
+        "Got it");;
         return;
     }
     generateMatches();
 }
 document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
+document.getElementById("match-count").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        generateMatchesBTN();
+    }
+});
 
 let players = JSON.parse(localStorage.getItem("storingPlayers")) || [];
 showPlayerList()
@@ -80,7 +99,9 @@ showPlayerList()
 function addPlayer (){
     let playerName = document.getElementById("player-name").value;
     if (!playerName || playerName.length > 256) {
-        alert("That name didn't pass the vibe check!")
+        showModal( "Coach's Advice",
+            "That name didn't pass the vibe check.",
+            "Got it");
         return;
     }
     let player = {
