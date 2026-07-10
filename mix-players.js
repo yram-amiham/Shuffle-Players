@@ -1,5 +1,4 @@
 function showPlayerList() {
-
     let tableBody = document.getElementById("table-body")
     tableBody.innerHTML = "";
 
@@ -31,8 +30,52 @@ function showPlayerList() {
     }
 }
 
+function generateMatches() {
+    let totalRounds = Number(document.getElementById("match-count").value);
+    let matchesTableBody = document.getElementById("matches-table-body")
+    matchesTableBody.innerHTML = "";
+
+    for (let i = 0; i < totalRounds; i++){
+        let roundBodyRow = document.createElement("tr")
+        matchesTableBody.appendChild(roundBodyRow)
+
+        let roundData = document.createElement("th")
+        roundData.scope = "row";
+        roundData.textContent = i + 1
+        roundBodyRow.appendChild(roundData)
+
+        let teamAData = document.createElement("td")
+        teamAData.textContent = "";
+        roundBodyRow.appendChild(teamAData)
+    
+        let teamBData = document.createElement("td")
+        teamBData.textContent = "";
+        roundBodyRow.appendChild(teamBData)
+
+        let teamRestingData = document.createElement("td")
+        teamRestingData.textContent = "";
+        roundBodyRow.appendChild(teamRestingData)
+    }
+
+}
+
+function generateMatchesBTN (){
+    let numberOfMatches = Number(document.getElementById("match-count").value);
+    if (players.length < 4){
+        alert("Please add at least 4 players to generate match rounds!")
+        return;
+    }
+
+    if (numberOfMatches <= 0) {
+        alert("Please enter a valid number of matches.");
+        return;
+    }
+    generateMatches();
+}
+document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
+
 let players = [];
-// let matchesPlayed = [];
+let matchCount = []
 
 function addPlayer (){
     let playerName = document.getElementById("player-name").value;
