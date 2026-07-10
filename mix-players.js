@@ -25,6 +25,7 @@ function showPlayerList() {
         removeBtn.classList.add( "btn", "btn-outline-danger","btn-sm")
         removeBtn.addEventListener("click", function () {
             players.splice(i, 1);
+            localStorage.setItem("storingPlayers", JSON.stringify(players))
             showPlayerList();
         });
     }
@@ -56,31 +57,30 @@ function generateMatches() {
         teamRestingData.textContent = "";
         roundBodyRow.appendChild(teamRestingData)
     }
-
 }
 
 function generateMatchesBTN (){
     let numberOfMatches = Number(document.getElementById("match-count").value);
     if (players.length < 4){
-        alert("Please add at least 4 players to generate match rounds!")
+        alert("You can't play 2v2 with imaginary friends. Add at least 4 players.")
         return;
     }
 
     if (numberOfMatches <= 0) {
-        alert("Please enter a valid number of matches.");
+        alert("Generating... absolutely nothing. Enter the number of rounds.");
         return;
     }
     generateMatches();
 }
 document.getElementById("generate-matches-btn").addEventListener("click", generateMatchesBTN);
 
-let players = [];
-let matchCount = []
+let players = JSON.parse(localStorage.getItem("storingPlayers")) || [];
+showPlayerList()
 
 function addPlayer (){
     let playerName = document.getElementById("player-name").value;
     if (!playerName || playerName.length > 256) {
-        alert("Please enter a valid name within 256 characters!")
+        alert("That name didn't pass the vibe check!")
         return;
     }
     let player = {
@@ -90,6 +90,7 @@ function addPlayer (){
     opponents: []
 }
     players.push(player)
+    localStorage.setItem("storingPlayers", JSON.stringify(players))
     document.getElementById("player-name").value = "";
     showPlayerList()
 };
@@ -104,5 +105,6 @@ document.getElementById("player-name").addEventListener("keydown", function (eve
     
 document.getElementById("clear-all-players").addEventListener("click", function () {
         players = [];
+        localStorage.setItem("storingPlayers", JSON.stringify(players))
         showPlayerList();
     });
