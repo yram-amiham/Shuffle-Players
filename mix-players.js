@@ -35,10 +35,11 @@ function showModal(title, message, buttonText) {
     document.getElementById("modal-title").textContent = title;
     document.getElementById("modal-message").textContent = message;
     document.getElementById("modal-button").textContent = buttonText;
+
     let modalElement = document.getElementById("appModal");
     let modal = new bootstrap.Modal(modalElement);
+
     modal.show();
-    document.getElementById("modal-button").focus();
 }
 
 function generateMatches() {
@@ -47,6 +48,25 @@ function generateMatches() {
     matchesTableBody.innerHTML = "";
 
     for (let i = 0; i < totalRounds; i++){
+        let shuffledPlayers = [...players];
+        for (let j = shuffledPlayers.length - 1; j > 0; j--) {
+            let randomIndex = Math.floor(Math.random() * (j + 1))
+            let temp = shuffledPlayers[j];
+            shuffledPlayers[j] = shuffledPlayers[randomIndex];
+            shuffledPlayers[randomIndex] = temp;
+        }
+
+        let playingPlayers = shuffledPlayers.slice(0, 4);
+        let teamA = playingPlayers.slice(0, 2);
+        let teamB = playingPlayers.slice(2, 4);
+        let restingPlayers = shuffledPlayers.slice(4)
+
+        let restingNames = restingPlayers
+        .map(function(player) {
+            return player.name;
+        })
+        .join(", ");
+
         let roundBodyRow = document.createElement("tr")
         matchesTableBody.appendChild(roundBodyRow)
 
@@ -56,15 +76,15 @@ function generateMatches() {
         roundBodyRow.appendChild(roundData)
 
         let teamAData = document.createElement("td")
-        teamAData.textContent = "-";
+        teamAData.textContent = teamA[0].name + " & " + teamA[1].name;
         roundBodyRow.appendChild(teamAData)
     
         let teamBData = document.createElement("td")
-        teamBData.textContent = "-";
+        teamBData.textContent = teamB[0].name + " & " + teamB[1].name;
         roundBodyRow.appendChild(teamBData)
 
         let teamRestingData = document.createElement("td")
-        teamRestingData.textContent = "-";
+        teamRestingData.textContent = restingNames;
         roundBodyRow.appendChild(teamRestingData)
     }
 }
